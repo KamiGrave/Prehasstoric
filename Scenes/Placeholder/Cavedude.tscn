@@ -1,0 +1,34 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Code/Framework/DataModel/Model.cs" type="Script" id=1]
+[ext_resource path="res://Code/Game/CharacterModels/MovementModelPart.cs" type="Script" id=2]
+[ext_resource path="res://Assets/Placeholder/CavemanPlaceholder.png" type="Texture" id=3]
+[ext_resource path="res://Code/Game/CharacterModels/BehaviourModelPart.cs" type="Script" id=4]
+[ext_resource path="res://Code/Game/CharacterComponents/GlobalMessageQueueHandle.cs" type="Script" id=5]
+[ext_resource path="res://Code/Framework/ProxyNodes/Node2DProxy.cs" type="Script" id=6]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 90.0
+
+[node name="Cavedude" type="KinematicBody2D"]
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -90 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -90 )
+texture = ExtResource( 3 )
+
+[node name="Model" type="Node" parent="."]
+script = ExtResource( 1 )
+
+[node name="MovementModel" type="Node" parent="Model"]
+script = ExtResource( 2 )
+
+[node name="BehaviourModel" type="Node" parent="Model"]
+script = ExtResource( 4 )
+
+[node name="GMQHandle" type="Node" parent="Model"]
+script = ExtResource( 5 )
