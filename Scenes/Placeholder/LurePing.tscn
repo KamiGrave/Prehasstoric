@@ -7,7 +7,6 @@
 [ext_resource path="res://Assets/Placeholder/Cross.png" type="Texture" id=5]
 
 [node name="Node2D" type="Node2D"]
-scale = Vector2( 0.2, 0.2 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

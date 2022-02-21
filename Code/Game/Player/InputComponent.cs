@@ -17,13 +17,17 @@ namespace ProjectPrehasstoric
 
             if(evnt is InputEventMouseButton mouseBtnEvnt)
             {
-                if(mouseBtnEvnt.ButtonIndex == (int)ButtonList.Left)
+                if(mouseBtnEvnt.ButtonIndex == (int)ButtonList.Left && mouseBtnEvnt.IsPressed())
                 {
-                    Node2D parent = Model.Owner.Owner as Node2D;
-                    Node2DProxy luredProxy = ResourceLoader.Load<PackedScene>("res://Scenes/Placeholder/LurePing.tscn").Instance() as Node2DProxy;
-                    parent.AddChild(luredProxy);
-
-                    luredProxy.Position = mouseBtnEvnt.GlobalPosition - parent.GetViewportRect().Size*0.5f;
+                    Viewport vp = GetViewport();
+                    Rect2 visibleRect = vp.GetVisibleRect();
+                    Vector2 canvasScale = vp.CanvasTransform.Scale;
+                    //Vector2 lurePosition = (mouseBtnEvnt.GlobalPosition * vp.CanvasTransform);
+                    Vector2 lurePosition = mouseBtnEvnt.GlobalPosition - vp.CanvasTransform.origin;
+                    lurePosition /= vp.CanvasTransform.Scale;
+                    
+                    Model.AddModelMessage(new PlayerMessage.LurePing(lurePosition));
+                    
                 }
             }
         }

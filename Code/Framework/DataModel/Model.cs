@@ -131,6 +131,7 @@ namespace AssGameFramework.DataModel
                     {
                         compPart = new ComponentModelPart();
                         AddPart(compPart);
+                        compPart.Owner = Owner;
                     }
                     compPart.AddComponent(child as NodeComponent);
                 }

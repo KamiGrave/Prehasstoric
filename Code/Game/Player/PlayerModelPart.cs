@@ -8,6 +8,12 @@ namespace ProjectPrehasstoric
 {
     public class PlayerModelPart : ModelPart
     {
-        
+        protected override void OnAttachedToModel()
+        {
+            base.OnAttachedToModel();
+
+            PlayerStateMachineModel.Component comp = StateMachineModelManager.Instance.GetModel<PlayerStateMachineModel>().CreateComponent(this);
+            AddComponent(comp);
+        }
     }
 }
